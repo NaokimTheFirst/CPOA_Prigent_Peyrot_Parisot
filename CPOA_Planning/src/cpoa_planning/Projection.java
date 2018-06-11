@@ -13,5 +13,5 @@ public class Projection {
    private int ID_proj;
    private Date hdeb;
    private Date hfin;
-
+   private boolean competition;
 }

@@ -10,18 +10,14 @@ import cpoa_planning.TypeFilm;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- *
- * @author p1623123
- */
+//Fonction qui récupère tous les films par catégorie
 public class DAOFilm {
     public static void Get_All_Films(ArrayList<TypeFilm> ListCategorie){
-        ArrayList<Film> ListFilm = new ArrayList<Film >();
         for(TypeFilm f: ListCategorie){
             Get_Films_Of_Category(f);
             }
         }            
-    
+    //Fonction qui ajotue tous les films a une catégorie
     private static ArrayList<Film> Get_Films_Of_Category(TypeFilm TF){
         ArrayList<Film> ListFilm = new ArrayList<Film >();
         String requete = "Select * from FILM where IDCATEGORIE = "+TF.getID_type();

@@ -13,6 +13,15 @@ public class TypeFilm {
    private String nom_type;
     
    public ArrayList<Film> films;
+   public ArrayList<Jure> Jury;
+
+    public ArrayList<Jure> getJury() {
+        return Jury;
+    }
+
+    public void setJury(ArrayList<Jure> Jury) {
+        this.Jury = Jury;
+    }
 
     public TypeFilm(int ID_type, String nom_type) {
         this.ID_type = ID_type;
@@ -33,9 +42,5 @@ public class TypeFilm {
     
     public void SetListFilm(ArrayList<Film> newList){
         this.films = newList;
-    }
-    
-    
-   
-   
+    }  
 }
