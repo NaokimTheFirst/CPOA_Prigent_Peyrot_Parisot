@@ -8,18 +8,26 @@ package BD;
 import cpoa_planning.TypeFilm;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-/**
- *
- * @author p1623123
- */
 public class DAOTypeFilm {
+    private static ArrayList<TypeFilm> ListFilm;
+
+    public static ArrayList<TypeFilm> GetListType() {
+        if(ListFilm == null){
+            FindAllCompetitions();
+        }
+        return ListFilm;
+    }
+
+    private static void SetListFilm(ArrayList<TypeFilm> LF) {
+        ListFilm = LF;
+    }
+    
     //Fonction qui récupère toutes les catégories
-    public static ArrayList<TypeFilm> Get_All_Competitions(){
-        ArrayList<TypeFilm> ListCategorie = new ArrayList<TypeFilm>();
+    private static void FindAllCompetitions(){
+        ArrayList<TypeFilm> NewList = new ArrayList<TypeFilm>();
         String requete = "Select * from CATEGORIE";
 
-        ResultSet result = bd.Bd.FaireRequete(requete);
+        ResultSet result = BD_Co.FaireRequete(requete);
        
         try{
             if(result !=null){
@@ -27,16 +35,17 @@ public class DAOTypeFilm {
                 {
                     TypeFilm new_t;
                     new_t = new TypeFilm(result.getInt("IDCATEGORIE"),result.getString("NOM"));
-                    ListCategorie.add((new_t));
+                    NewList.add((new_t));
                 }
             } else {
-                return null;
+                return;
             }
         }
         catch (Exception e)
         {
             System.out.println(e);
-        }            
-        return ListCategorie;
+        }
+        
+        SetListFilm(NewList);
     }
 }

@@ -1,7 +1,5 @@
 package cpoa_planning;
 
-import bd.Bd;
-import java.sql.ResultSet;
 import java.util.*;
 
 public class Film {
@@ -21,28 +19,6 @@ public class Film {
         this.duree = duree;
         this.IdCategorie =IDC;
     }
-    
-        //Fonction qui ajoute un film à la BD à partir d'un Objet
-        public boolean AjouterFilm(Film f){
-             // TODO code application logic here
-             String requete = "INSERT INTO FILM (IDFILM,TITRE,GENRE,REAL,DUREE) VALUES ('0','"+titre+"','"+genre+"','"+real+"','"+duree+"')";
-             
-             ResultSet result = Bd.FaireRequete(requete);
-       
-        try{
-            if(result !=null){
-                System.out.println("Insertion réussi");
-                return true;
-            } else {
-                System.out.println("Insertion échoué");
-            }
-        }
-        catch (Exception e)
-        {
-            System.out.println(e);
-        }            
-            return false;
-        }
 
     public int getID_film() {
         return ID_film;

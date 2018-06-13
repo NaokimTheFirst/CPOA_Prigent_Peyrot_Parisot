@@ -12,20 +12,22 @@ public class TypeFilm {
    private int ID_type;
    private String nom_type;
     
-   public ArrayList<Film> films;
-   public ArrayList<Jure> Jury;
+   private ArrayList<Film> films;
+   private ArrayList<Jure> jury;
+   private ArrayList<Salle> salles;
 
     public ArrayList<Jure> getJury() {
-        return Jury;
+        return jury;
     }
 
     public void setJury(ArrayList<Jure> Jury) {
-        this.Jury = Jury;
+        this.jury = Jury;
     }
 
     public TypeFilm(int ID_type, String nom_type) {
         this.ID_type = ID_type;
         this.nom_type = nom_type;
+        salles = new ArrayList<Salle>();
     }
 
     public int getID_type() {
@@ -42,5 +44,15 @@ public class TypeFilm {
     
     public void SetListFilm(ArrayList<Film> newList){
         this.films = newList;
-    }  
+    }
+    
+    public void AddSalle(Salle s){
+        this.salles.add(s);
+    }
+
+    public ArrayList<Salle> GetSalles() {
+        return salles;
+    }
+    
+    
 }

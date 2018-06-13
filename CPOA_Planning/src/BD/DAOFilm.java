@@ -12,17 +12,33 @@ import java.util.ArrayList;
 
 //Fonction qui récupère tous les films par catégorie
 public class DAOFilm {
-    public static void Get_All_Films(ArrayList<TypeFilm> ListCategorie){
+    private static ArrayList<Film> listFilm;
+
+    public static ArrayList<Film> GetListFilm() {
+        if(listFilm == null){
+            GetAllFilms();
+        }
+        return listFilm;
+    }
+
+    //
+    private static void SetListFilm(ArrayList<Film> LF) {
+        listFilm = LF;
+    } 
+    
+    //
+    private static void GetAllFilms(){
+        ArrayList<TypeFilm> ListCategorie = DAOTypeFilm.GetListType();
         for(TypeFilm f: ListCategorie){
             Get_Films_Of_Category(f);
             }
         }            
     //Fonction qui ajotue tous les films a une catégorie
-    private static ArrayList<Film> Get_Films_Of_Category(TypeFilm TF){
+    private static void Get_Films_Of_Category(TypeFilm TF){
         ArrayList<Film> ListFilm = new ArrayList<Film >();
         String requete = "Select * from FILM where IDCATEGORIE = "+TF.getID_type();
 
-        ResultSet result = bd.Bd.FaireRequete(requete);
+        ResultSet result = BD_Co.FaireRequete(requete);
        
         try{
             if(result !=null){
@@ -36,13 +52,18 @@ public class DAOFilm {
                 TF.SetListFilm(ListFilm);
             } else {
                 System.out.println("requête échoué");
-                return null;
+                return;
             }
         }
         catch (Exception e)
         {
             System.out.println(e);
         }            
-        return ListFilm;
+        
+        if(listFilm != null){
+            listFilm.addAll(ListFilm);
+        } else {
+            SetListFilm(listFilm);
+        }
     }
 }

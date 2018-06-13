@@ -10,40 +10,59 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class DAOJure {
+    private static ArrayList<Jure> ListJure;
+
+    public static ArrayList<Jure> GetListJure() {
+        if(ListJure == null){
+            FindAllJury();
+        }
+        return ListJure;
+    }
+
+    private static void SetListJure(ArrayList<Jure> LJ) {
+        DAOJure.ListJure = LJ;
+    }
     
-    public static void Get_All_Jury(ArrayList<TypeFilm> ListCategorie){
+    
+    //Fonction qui récupère tous les jurés dans la BD
+    private static void FindAllJury(){
+        ArrayList<TypeFilm> ListCategorie = DAOTypeFilm.GetListType();
         for(TypeFilm TF: ListCategorie){
-            Get_Jure_Of_Category(TF);
+            GetJureOfCategory(TF);
             }
         }  
     
     //Fonction qui récupère toutes les catégories
-    public static ArrayList<Jure> Get_Jure_Of_Category(TypeFilm TF){
-        ArrayList<Jure> ListJure = new ArrayList<Jure>();
+    private static void GetJureOfCategory(TypeFilm TF){
+        ArrayList<Jure> NewList = new ArrayList<Jure>();
         String requete = "Select * from JURE where IDCATEGORIE ="+TF.getID_type();
         boolean p;
 
-        ResultSet result = bd.Bd.FaireRequete(requete);
+        ResultSet result = BD_Co.FaireRequete(requete);
        
         try{
             if(result !=null){
                 while(result.next())
                 {
-                    p = (result.getInt("PRESIDENT") == 0) ? false : true;       //Convetit le Int de la BD en bool
+                    p = (result.getInt("PRESIDENT") == 0) ? false : true;       //Convertit le Int de la BD en bool
                     
-                    Jure new_j;
-                    new_j = new Jure(result.getInt("IDCATEGORIE"),
-                            result.getString("NOMJURE"),p);
-                    ListJure.add(new_j);
+                    Jure new_j = new Jure(result.getInt("IDCATEGORIE"),
+                            result.getString("NOMJURE"),p,result.getInt("IDCATEGORIE"));
+                    NewList.add(new_j);
                 }
-                TF.setJury(ListJure);
+                TF.setJury(NewList);
             } else {
-                return null;
+                return;
             }
         }
         catch (Exception e){
             System.out.println(e);
-        }            
-        return ListJure;
+        }          
+
+        if(ListJure != null){
+            ListJure.addAll(ListJure);
+        } else {
+            SetListJure (ListJure);
+        }
     }
 }
