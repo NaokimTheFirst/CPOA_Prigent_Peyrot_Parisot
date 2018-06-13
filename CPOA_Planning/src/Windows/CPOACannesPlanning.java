@@ -15,6 +15,9 @@ public class CPOACannesPlanning {
         
         Menu Menu = new Menu();
         Fenetre.add(Menu);
+        
+        Fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         Fenetre.setVisible(true);
         Menu.setVisible(true);
     }

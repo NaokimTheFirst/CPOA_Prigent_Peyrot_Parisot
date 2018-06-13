@@ -13,12 +13,13 @@ public class Salle {
    private String name;
    private int places;
    
-   public java.util.Collection<Projection> projection;
+   public ArrayList<Projection> projection;
 
     public Salle(int ID_salle, String name, int places) {
         this.ID_salle = ID_salle;
         this.name = name;
         this.places = places;
+        projection = new ArrayList<Projection>();
     }
 
     public int getID_salle() {
@@ -29,6 +30,9 @@ public class Salle {
         return name;
     }
    
-   
+   //Ajoute une projection à la liste
+    public void Add_Projection(Projection p) {
+        projection.add(p);
+    }
 
 }

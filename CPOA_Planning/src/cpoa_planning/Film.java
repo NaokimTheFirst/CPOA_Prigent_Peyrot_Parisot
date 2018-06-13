@@ -18,6 +18,12 @@ public class Film {
         this.real = real;
         this.duree = duree;
         this.IdCategorie =IDC;
+        projection = new ArrayList<Projection>();
+    }
+    
+    //Ajoute une projection à la liste
+    public void Add_Projection(Projection p) {
+        projection.add(p);
     }
 
     public int getID_film() {

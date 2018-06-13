@@ -7,7 +7,12 @@ package Windows;
 
 import BD.*;
 import cpoa_planning.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.sql.Date;
+import java.time.*;
+
 
 public class Menu extends javax.swing.JPanel {
     public Menu() {
@@ -21,8 +26,33 @@ public class Menu extends javax.swing.JPanel {
         DAOFilm.GetListFilm();
         DAOJure.GetListJure();
         DAOSalle.GetListSalle();
+
+        //DisplayFilmByCategorie(ListCategorie);
+
+        //Projection p = Add_Projection(ListCategorie.get(0).GetSalles().get(0),ListCategorie.get(0).getFilm().get(0));       
+        //DAOProjection.AddProjToBD(p);
+        //DAOProjection.DropProjectionTable();
+    }
+    
+    
+   //Fonction qui ajoute une projection
+    private Projection Add_Projection(Salle s, Film f){
+        ArrayList<TypeFilm> ListCategorie = DAOTypeFilm.GetListType();
+        LocalDateTime Ddeb = getDate(2018,6,12,10,30);
         
-        DisplayFilmByCategorie(ListCategorie);
+        
+        Projection p = new Projection(Ddeb,true,f,s);
+        s.Add_Projection(p);
+        f.Add_Projection(p);
+        
+        return p;
+    }
+    
+    
+    //Retourne une localDateTime
+    private LocalDateTime getDate(int année, int mois, int jours, int heure, int minutes){
+        LocalDateTime newDate = LocalDate.of(année, mois,jours).atTime(heure,minutes);
+        return newDate;
     }
     
     //Fonction qui affiche les films par catégorie
