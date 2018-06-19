@@ -1,9 +1,3 @@
-/***********************************************************************
- * Module:  Type_Film.java
- * Author:  p1623123
- * Purpose: Defines the Class Type_Film
- ***********************************************************************/
-
 package cpoa_planning;
 
 import java.util.*;

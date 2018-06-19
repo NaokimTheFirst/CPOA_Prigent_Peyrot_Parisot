@@ -5,6 +5,7 @@ import java.sql.*;
 public class BD_Co {
 private final static String passwd = "288430";
 private final static  String user = "p1623123"; 
+private static Connection connection;
 
     public static ResultSet FaireRequete(String requete) {
         // TODO code application logic here
@@ -18,8 +19,9 @@ private final static  String user = "p1623123";
             String url = "jdbc:oracle:thin:@iutdoua-oracle.univ-lyon1.fr:1521:orcl"; 
             //connexion à l’URL en précisant l’utilisateur et 
             // le mot de passe d’accès à la BD
-
-            Connection connection = DriverManager.getConnection(url,user,passwd); 
+            if(connection == null){
+                connection = DriverManager.getConnection(url,user,passwd); 
+            }
             //Création de l'objet gérant les requêtes 
             Statement statement = connection.createStatement();
             //récupération du résultat d'une requête

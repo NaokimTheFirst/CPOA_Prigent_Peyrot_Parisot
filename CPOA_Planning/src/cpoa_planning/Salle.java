@@ -1,9 +1,3 @@
-/***********************************************************************
- * Module:  Salle.java
- * Author:  p1623123
- * Purpose: Defines the Class Salle
- ***********************************************************************/
-
 package cpoa_planning;
 
 import java.util.*;
