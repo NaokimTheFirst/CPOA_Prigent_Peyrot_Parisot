@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 public class CPOA_Planning {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         ArrayList<TypeFilm> ListCategorie;
         ListCategorie = DAOTypeFilm.Get_All_Competitions();
