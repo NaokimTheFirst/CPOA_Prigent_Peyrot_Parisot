@@ -30,11 +30,11 @@ public class DAOFilm {
     private static void GetAllFilms(){
         ArrayList<TypeFilm> ListCategorie = DAOTypeFilm.GetListType();
         for(TypeFilm f: ListCategorie){
-            Get_Films_Of_Category(f);
+            SetFilmsOfCategory(f);
             }
         }            
-    //Fonction qui ajotue tous les films a une catégorie
-    private static void Get_Films_Of_Category(TypeFilm TF){
+    //Fonction qui ajoute tous les films a une catégorie
+    private static void SetFilmsOfCategory(TypeFilm TF){
         ArrayList<Film> ListFilm = new ArrayList<Film >();
         String requete = "Select * from FILM where IDCATEGORIE = "+TF.getID_type();
 

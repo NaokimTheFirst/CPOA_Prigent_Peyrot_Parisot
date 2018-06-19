@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Projection {
-   private int lastIndex = -1;
+   private static int lastIndex = -1;
    private int ID_proj;
    private LocalDateTime hdeb;
    private LocalDateTime hfin;
@@ -29,12 +29,24 @@ public class Projection {
         int duree = f.getDuree();
         int heure = d.getHour() + duree/60;
         int minutes = d.getMinute() + duree%60;
+        int jour = d.getDayOfMonth();
+        int mois = d.getMonthValue();
+        
         if(minutes >= 60){
             heure += 1;
             minutes = minutes%60;
         }
-        LocalDateTime newDate = LocalDate.of(d.getYear(),d.getMonth()
-                ,d.getDayOfMonth()).atTime(heure,minutes);
+        
+        if(heure >= 24){
+                heure = heure - 24;
+                jour++;
+                if(jour>30){
+                    mois++;
+                    jour = 1;
+                }
+            }
+        
+        LocalDateTime newDate = LocalDate.of(d.getYear(),mois,jour).atTime(heure,minutes);
         return newDate;
     }
 
