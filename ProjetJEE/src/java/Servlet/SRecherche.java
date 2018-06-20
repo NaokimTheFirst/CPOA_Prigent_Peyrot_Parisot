@@ -44,6 +44,7 @@ public class SRecherche extends HttpServlet {
         
         if(request.getParameter("action").equals("Valider") && !request.getParameter("choix").equals("")){
             String nomHotel = request.getParameter("choix");
+            String nomV = request.getParameter("nomVIP");
             String cible = (String) session.getAttribute("cible");
             DAOHebergements.SetCibleHotel(nomHotel, cible);
             
@@ -51,6 +52,9 @@ public class SRecherche extends HttpServlet {
             int jour = (int) session.getAttribute("jour");
             DAODispo.ChangeChambreHotel(nomHotel,jour);
             session.setAttribute("cible", null);
+            DAOReservation.AddResa(nomHotel, jour, nomV);
+            
+            request.setAttribute("message", "Le "+nomHotel+" est heureux d'accueillir "+nomV+" !");
 
         }
         

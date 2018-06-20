@@ -37,6 +37,7 @@
              <br>
             
             <form method="post" action="SRecherche">
+                
                 <table class="table table-striped">
                     <tr>
                         <th>NomHebergement :</th><th>Type :</th><th>Adresse :</th><th>Service :</th><th>Valider :</th>
@@ -48,8 +49,14 @@
                         </tr>
                     </c:forEach>
                 </table>
+                <label for="nomVIP">NOM VIP :</label>
+                <input type="text" name="nomVIP"  size="20" maxlength="20" required/>
                 <input type="submit" name="action" value="Valider"/>
             </form>
+             <br>
+             <%-- Affichage de la chaîne "message" transmise par la servlet --%>
+              <p>${message}</p>
+              <br>
         </div>
         </div>
     <!-- Vue Footer -->

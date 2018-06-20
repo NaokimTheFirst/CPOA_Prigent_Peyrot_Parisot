@@ -42,7 +42,7 @@ public class DAODispo {
         try{
             while(result.next()){
                 Hebergement h = GetHebergement(result.getString("NOMH"),statut);
-                if(h != null){
+                if(h.getNomhebergement() != null){
                     Hotels.add(h);
                 }
             }
@@ -57,21 +57,19 @@ public class DAODispo {
     private static Hebergement GetHebergement(String nom, String statut){
         String requete = "SELECT * FROM HEBERGEMENT WHERE NOMHEBERGEMENT ='"+nom+"' AND (CIBLE='"+statut+"' OR CIBLE = 'NEUTRE')" ;
         ResultSet result = BD.FaireRequete(requete);
-        
+        Hebergement h = new Hebergement();
         try{
-            Hebergement h = new Hebergement();
+            
             result.next();
             h.setNomhebergement(result.getString("NOMHEBERGEMENT"));
             h.setType(result.getString("TYPE"));
             h.setAdresse(result.getString("ADRESSE"));
             h.setServices(result.getString("SERVICES"));
-            BD.CloseConnection();
-            return h;
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
 
         BD.CloseConnection();
-        return null;
+        return h;
     }
 }
