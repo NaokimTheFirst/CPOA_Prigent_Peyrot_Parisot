@@ -39,6 +39,14 @@ public class Menu extends javax.swing.JPanel {
         });
 
         jButton2.setText("Modifier");
+<<<<<<< HEAD
+=======
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+>>>>>>> Benoit
 
         jButton3.setText("Visualiser");
 
@@ -80,6 +88,13 @@ public class Menu extends javax.swing.JPanel {
         //DAOJure.GetListJure();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+<<<<<<< HEAD
+=======
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+>>>>>>> Benoit
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -29,12 +29,21 @@ public class CreationPlanning {
         ArrayList<Film> Films = LongMetrage.getFilm();
         
         for(int i = 0; i < Films.size();i++){
+<<<<<<< HEAD
+=======
+            //Ajoute la séance du lendemain
+            Add_Projection(LongMetrage.GetSalles().get(1),Films.get(i),getNextDay(prochainCreneau));
+            //Ajoute les séances dans la salle principale
+>>>>>>> Benoit
             for(int j = 0; j < 2;j++){
                 prochainCreneau = Add_Projection(LongMetrage.GetSalles().get(0),Films.get(i),prochainCreneau);
                 prochainCreneau = getNextSession(prochainCreneau);
             }
         }
+<<<<<<< HEAD
        
+=======
+>>>>>>> Benoit
     }
     
     
@@ -80,6 +89,19 @@ public class CreationPlanning {
         return lastSession;
     }
     
+<<<<<<< HEAD
+=======
+    //Ajoute 15 min de pause entre chaque séance
+    private static LocalDateTime getNextDay(LocalDateTime lastSession){
+        int jour = lastSession.getDayOfMonth();
+        jour++;
+        
+        lastSession = getDate(lastSession.getYear(),lastSession.getMonthValue()
+                ,jour,lastSession.getHour(),lastSession.getMinute());
+        return lastSession;
+    }
+    
+>>>>>>> Benoit
     //Fonction qui affiche les films par catégorie
     private void DisplayFilmByCategorie(ArrayList<TypeFilm> ListCategorie){
         String s;
